@@ -1,0 +1,14 @@
+File code: 9994
+File length: 532950
+Version: 1000
+Shape type: Polygon
+X min: 171678
+Y min: 133223
+X max: 861896
+Y max: 797228
+Z min: 0
+Z max: 0
+M min: 0
+M max: 0
+
+

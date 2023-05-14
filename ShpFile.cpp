@@ -16,20 +16,20 @@ ShpFile::~ShpFile() {
 }
 
 void ShpFile::readMainHeaders() {
-    file.read(reinterpret_cast<char*>(&mainHeaderInt), sizeof(mainHeaderInt));
-    if (file.gcount() != sizeof(mainHeaderInt)) {
+    file.read(reinterpret_cast<char*>(&mainHeaderBaseInfo), sizeof(mainHeaderBaseInfo));
+    if (file.gcount() != sizeof(mainHeaderBaseInfo)) {
         throw runtime_error("Couldn't read main header of SHP file!");
     }
 
-    file.read(reinterpret_cast<char*>(&mainHeaderDouble), sizeof(mainHeaderDouble));
-    if (file.gcount() != sizeof(mainHeaderDouble)) {
+    file.read(reinterpret_cast<char*>(&mainHeaderBoundingBox), sizeof(mainHeaderBoundingBox));
+    if (file.gcount() != sizeof(mainHeaderBoundingBox)) {
         throw runtime_error("Couldn't read main header of SHP file!");
     }
 
-    ByteConverter::bigEndianIntRead(&mainHeaderInt.fileCode);
-    ByteConverter::bigEndianIntRead(&mainHeaderInt.fileLength);
+    ByteConverter::bigEndianIntRead(&mainHeaderBaseInfo.fileCode);
+    ByteConverter::bigEndianIntRead(&mainHeaderBaseInfo.fileLength);
     string shapeName;
-    switch (mainHeaderInt.shapeType) {
+    switch (mainHeaderBaseInfo.shapeType) {
     case 0:
         shapeName = "Null Shape";
         break;
@@ -77,37 +77,37 @@ void ShpFile::readMainHeaders() {
     }
 
     // Wypisz informacje z g³ównego nag³ówka
-    cout << "File code: " << mainHeaderInt.fileCode << endl;
-    cout << "File length: " << mainHeaderInt.fileLength << endl;
-    cout << "Version: " << mainHeaderInt.version << endl;
+    cout << "File code: " << mainHeaderBaseInfo.fileCode << endl;
+    cout << "File length: " << mainHeaderBaseInfo.fileLength << endl;
+    cout << "Version: " << mainHeaderBaseInfo.version << endl;
     cout << "Shape type: " << shapeName << endl;
-    cout << "X min: " << mainHeaderDouble.xMin << endl;
-    cout << "Y min: " << mainHeaderDouble.yMin << endl;
-    cout << "X max: " << mainHeaderDouble.xMax << endl;
-    cout << "Y max: " << mainHeaderDouble.yMax << endl;
-    cout << "Z min: " << mainHeaderDouble.zMin << endl;
-    cout << "Z max: " << mainHeaderDouble.zMax << endl;
-    cout << "M min: " << mainHeaderDouble.mMin << endl;
-    cout << "M max: " << mainHeaderDouble.mMax << endl;
+    cout << "X min: " << mainHeaderBoundingBox.xMin << endl;
+    cout << "Y min: " << mainHeaderBoundingBox.yMin << endl;
+    cout << "X max: " << mainHeaderBoundingBox.xMax << endl;
+    cout << "Y max: " << mainHeaderBoundingBox.yMax << endl;
+    cout << "Z min: " << mainHeaderBoundingBox.zMin << endl;
+    cout << "Z max: " << mainHeaderBoundingBox.zMax << endl;
+    cout << "M min: " << mainHeaderBoundingBox.mMin << endl;
+    cout << "M max: " << mainHeaderBoundingBox.mMax << endl;
 
-    outputFile << "File code: " << mainHeaderInt.fileCode << endl;
-    outputFile << "File length: " << mainHeaderInt.fileLength << endl;
-    outputFile << "Version: " << mainHeaderInt.version << endl;
+    outputFile << "File code: " << mainHeaderBaseInfo.fileCode << endl;
+    outputFile << "File length: " << mainHeaderBaseInfo.fileLength << endl;
+    outputFile << "Version: " << mainHeaderBaseInfo.version << endl;
     outputFile << "Shape type: " << shapeName << endl;
-    outputFile << "X min: " << mainHeaderDouble.xMin << endl;
-    outputFile << "Y min: " << mainHeaderDouble.yMin << endl;
-    outputFile << "X max: " << mainHeaderDouble.xMax << endl;
-    outputFile << "Y max: " << mainHeaderDouble.yMax << endl;
-    outputFile << "Z min: " << mainHeaderDouble.zMin << endl;
-    outputFile << "Z max: " << mainHeaderDouble.zMax << endl;
-    outputFile << "M min: " << mainHeaderDouble.mMin << endl;
-    outputFile << "M max: " << mainHeaderDouble.mMax << endl;
+    outputFile << "X min: " << mainHeaderBoundingBox.xMin << endl;
+    outputFile << "Y min: " << mainHeaderBoundingBox.yMin << endl;
+    outputFile << "X max: " << mainHeaderBoundingBox.xMax << endl;
+    outputFile << "Y max: " << mainHeaderBoundingBox.yMax << endl;
+    outputFile << "Z min: " << mainHeaderBoundingBox.zMin << endl;
+    outputFile << "Z max: " << mainHeaderBoundingBox.zMax << endl;
+    outputFile << "M min: " << mainHeaderBoundingBox.mMin << endl;
+    outputFile << "M max: " << mainHeaderBoundingBox.mMax << endl;
     outputFile << endl;
     outputFile << endl;
 }
 void ShpFile::processRecords() {
     while (file) {
-        SHPRecordHeader recordHeader;
+        RecordHeader recordHeader;
         file.read(reinterpret_cast<char*>(&recordHeader), sizeof(recordHeader));
         if (file.gcount() != sizeof(recordHeader)) {
             break; // koniec pliku
@@ -117,9 +117,31 @@ void ShpFile::processRecords() {
 
         outputFile << "Record number: " << recordHeader.recordNumber << endl;
         outputFile << "Content length: " << recordHeader.contentLength << endl;
+
+        int shapeType;
+        file.read(reinterpret_cast<char*>(&shapeType), sizeof(shapeType));
+        outputFile << "Shape type: " << shapeType << endl;
+
+        // Czytanie ró¿nych typów geometrii
+        switch (shapeType) {
+        case 1: {
+            PointShape point;
+            point.read(file, outputFile);
+            break;
+        }
+        case 8: {
+            MultiPointShape multiPoint;
+            multiPoint.read(file, outputFile);
+            break;
+        }
+        default:
+            // Niewspierane typy, pomijaj zawartosc
+            file.seekg(static_cast<std::basic_istream<char, std::char_traits<char>>::off_type>(recordHeader.contentLength) * 2 - 4, ios::cur);
+            break;
+        }
+
         outputFile << endl;
 
-        file.seekg(static_cast<std::basic_istream<char, std::char_traits<char>>::off_type>(recordHeader.contentLength) * 2, ios::cur);
         if (!file) {
             throw runtime_error("Couldn't skip record content in SHP file!");
         }

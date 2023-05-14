@@ -141,9 +141,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShpFile.cpp" />
+    <ClCompile Include="MultiPointShape.cpp" />
+    <ClCompile Include="PointShape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ByteConverter.h" />
+    <ClInclude Include="MultiPointShape.h" />
+    <ClInclude Include="PointShape.h" />
     <ClInclude Include="ShpFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

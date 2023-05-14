@@ -1,10 +1,12 @@
-#ifndef SHPFILE_H
-#define SHPFILE_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
 #include <cstring>
 #include "ByteConverter.h"
+#include <vector>
+#include "PointShape.h"
+#include "MultiPointShape.h"
 
 class ShpFile {
 public:
@@ -18,15 +20,15 @@ public:
 private:
     std::ifstream file;
 
-    struct SHPMainHeaderInt {
+    struct MainHeaderBaseInfo {
         int fileCode;
         int unusedBytes[5];
         int fileLength;
         int version;
         int shapeType;
-    } mainHeaderInt;
+    } mainHeaderBaseInfo;
 
-    struct SHPMainHeaderDouble {
+    struct MainHeaderBoundingBox {
         double xMin;
         double yMin;
         double xMax;
@@ -35,12 +37,11 @@ private:
         double zMax;
         double mMin;
         double mMax;
-    } mainHeaderDouble;
+    } mainHeaderBoundingBox;
 
-    struct SHPRecordHeader {
+    struct RecordHeader {
         int recordNumber;
         int contentLength;
     } recordHeader;
 };
 
-#endif

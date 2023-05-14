@@ -1,4 +1,4 @@
-#define BYTECONVERTER_H
+#pragma once
 
 #include <cstdint>
 

@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     try {
-        ShpFile shpFile("pliki_SHP\\ProtectedPlanetPoints.shp");
+        ShpFile shpFile("pliki_SHP\\gminy.shp");
         shpFile.readMainHeaders();
         shpFile.processRecords();
     }

@@ -9,9 +9,9 @@ void MultiPointShape::read(std::ifstream& file, std::ofstream& outputFile) {
     file.read(reinterpret_cast<char*>(&multiPoint.xMax), sizeof(multiPoint.xMax));
     file.read(reinterpret_cast<char*>(&multiPoint.yMax), sizeof(multiPoint.yMax));
 
-    outputFile << "X min: " << multiPoint.xMin << std::endl;
+    outputFile << "X min: " << multiPoint.xMin << " ";
     outputFile << "Y min: " << multiPoint.yMin << std::endl;
-    outputFile << "X max: " << multiPoint.xMax << std::endl;
+    outputFile << "X max: " << multiPoint.xMax << " ";
     outputFile << "Y max: " << multiPoint.yMax << std::endl;
 
     // Czytaj liczbe punktow
@@ -27,7 +27,7 @@ void MultiPointShape::read(std::ifstream& file, std::ofstream& outputFile) {
 
     outputFile << "Points:" << std::endl;
     for (const auto& point : multiPoint.points) {
-        outputFile << " X: " << point.x << std::endl;
+        outputFile << " X: " << point.x << " ";
         outputFile << " Y: " << point.y << std::endl;
     }
 }

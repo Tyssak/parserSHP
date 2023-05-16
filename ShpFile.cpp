@@ -122,18 +122,32 @@ void ShpFile::processRecords() {
         file.read(reinterpret_cast<char*>(&shapeType), sizeof(shapeType));
         outputFile << "Shape type: " << shapeType << endl;
 
-        // Czytanie ró¿nych typów geometrii
+        // Czytanie róznych typów geometrii
         switch (shapeType) {
-        case 1: {
+        case 1: 
             PointShape point;
             point.read(file, outputFile);
             break;
-        }
-        case 8: {
+        case 3:
+            PolyLineShape poly_line;
+            poly_line.read(file, outputFile);
+            break;
+        case 5:
+            Polygon polygon;
+            polygon.read(file, outputFile);
+            break;
+        case 8: 
             MultiPointShape multiPoint;
             multiPoint.read(file, outputFile);
             break;
-        }
+        case 21:
+            PointM point_m;
+            point_m.read(file, outputFile);
+            break;
+        case 28:
+            MultiPointM multi_point_m;
+            multi_point_m.read(file, outputFile);
+            break;
         default:
             // Niewspierane typy, pomijaj zawartosc
             file.seekg(static_cast<std::basic_istream<char, std::char_traits<char>>::off_type>(recordHeader.contentLength) * 2 - 4, ios::cur);

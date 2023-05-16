@@ -7,6 +7,10 @@
 #include <vector>
 #include "PointShape.h"
 #include "MultiPointShape.h"
+#include "PolyLineShape.h"
+#include "Polygon.h"
+#include "PointM.h"
+#include "MultiPointM.h"
 
 class ShpFile {
 public:

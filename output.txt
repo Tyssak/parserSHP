@@ -1,0 +1,90 @@
+File code: 9994
+File length: 674
+Version: 1000
+Shape type: PolyLineM
+X min: -2.73611
+Y min: -0.527778
+X max: 0.372685
+Y max: 1.06019
+Z min: 0
+Z max: 0
+M min: 0
+M max: 2
+
+
+Record number: 1
+Content length: 272
+Shape type: 23
+X min: -2.31944 Y min: -0.516204 M min: 0
+X max: 0.372685 Y max: 1.01157 M max: 0
+Number of Parts: 1
+Number of Points: 20
+PolyLines:
+Id of First Point in Part no. 0 is: 0
+X: -1.58796 Y: 0.439815 M: 0
+X: -1.43287 Y: 0.395833 M: 0
+X: -1.00926 Y: 0.0671296 M: 0
+X: -1.46528 Y: -0.196759 M: 0
+X: -2.06019 Y: -0.087963 M: 0
+X: -2.31944 Y: 0.347222 M: 0
+X: -2.26389 Y: 0.506944 M: 0
+X: -2.1088 Y: 0.872685 M: 0
+X: -2.05787 Y: 1.01157 M: 0
+X: -1.62731 Y: 0.738426 M: 0
+X: -1.34954 Y: 0.733796 M: 0
+X: -0.574074 Y: 0.622685 M: 0
+X: 0.0277778 Y: 0.30787 M: 0
+X: 0.372685 Y: -0.5 M: 0
+X: 0.217593 Y: -0.516204 M: 0
+X: -0.555556 Y: -0.451389 M: 0
+X: -0.842593 Y: -0.453704 M: 0
+X: -1.22685 Y: -0.384259 M: 0
+X: -1.24769 Y: -0.243056 M: 0
+
+Record number: 2
+Content length: 128
+Shape type: 23
+X min: -1.69213 Y min: -0.122685 M min: 0
+X max: -0.215278 Y max: 1.06019 M max: 0
+Number of Parts: 1
+Number of Points: 8
+PolyLines:
+Id of First Point in Part no. 0 is: 0
+X: -1.69213 Y: 0.592593 M: 0
+X: -1.66667 Y: 0.111111 M: 0
+X: -0.962963 Y: -0.122685 M: 0
+X: -0.215278 Y: -0.0601852 M: 0
+X: -0.282407 Y: 0.467593 M: 0
+X: -0.30787 Y: 0.944444 M: 0
+X: -0.986111 Y: 0.99537 M: 0
+
+Record number: 3
+Content length: 140
+Shape type: 23
+X min: -2.73611 Y min: -0.527778 M min: 0
+X max: -1.92593 Y max: 0.828704 M max: 0
+Number of Parts: 1
+Number of Points: 9
+PolyLines:
+Id of First Point in Part no. 0 is: 0
+X: -1.92593 Y: -0.527778 M: 0
+X: -2.2963 Y: -0.208333 M: 0
+X: -2.5463 Y: 0.282407 M: 0
+X: -2.61111 Y: 0.828704 M: 0
+X: -2.68519 Y: 0.465278 M: 0
+X: -2.73611 Y: 0.0416667 M: 0
+X: -2.65509 Y: -0.210648 M: 0
+X: -2.43519 Y: -0.425926 M: 0
+
+Record number: 4
+Content length: 68
+Shape type: 23
+X min: -2.40741 Y min: -0.293981 M min: 0.0023
+X max: -2.16898 Y max: 0.5625 M max: 2
+Number of Parts: 1
+Number of Points: 3
+PolyLines:
+Id of First Point in Part no. 0 is: 0
+X: -2.16898 Y: -0.293981 M: 0.0023
+X: -2.375 Y: 0.1875 M: 2
+

@@ -75,8 +75,6 @@ void PolyLineShape::read(std::ifstream& file, std::ofstream& outputFile)
             }
         }
     }
-
-
 }
 
 

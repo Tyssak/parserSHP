@@ -68,10 +68,6 @@ void Polygon::read(std::ifstream& file, std::ofstream& outputFile)
             }
         }
     }
-
-
-
-
 }
 
 

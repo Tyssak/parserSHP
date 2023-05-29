@@ -140,14 +140,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MultiPointM.cpp" />
+    <ClCompile Include="PointM.cpp" />
+    <ClCompile Include="Polygon.cpp" />
+    <ClCompile Include="PolygonM.cpp" />
+    <ClCompile Include="PolyLineShape.cpp" />
     <ClCompile Include="ShpFile.cpp" />
     <ClCompile Include="MultiPointShape.cpp" />
     <ClCompile Include="PointShape.cpp" />
+    <ClCompile Include="PolyLineM.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ByteConverter.h" />
+    <ClInclude Include="MultiPointM.h" />
     <ClInclude Include="MultiPointShape.h" />
+    <ClInclude Include="PointM.h" />
     <ClInclude Include="PointShape.h" />
+    <ClInclude Include="Polygon.h" />
+    <ClInclude Include="PolygonM.h" />
+    <ClInclude Include="PolyLineM.h" />
+    <ClInclude Include="PolyLineShape.h" />
     <ClInclude Include="ShpFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

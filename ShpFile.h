@@ -11,6 +11,8 @@
 #include "Polygon.h"
 #include "PointM.h"
 #include "MultiPointM.h"
+#include "PolyLineM.h"
+#include "PolygonM.h"
 
 class ShpFile {
 public:

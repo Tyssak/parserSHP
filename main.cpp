@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     try {
-        ShpFile shpFile("pliki_SHP\\gminy.shp");
+        ShpFile shpFile("pliki_SHP\\PylilinieMy.shp");
         shpFile.readMainHeaders();
         shpFile.processRecords();
     }

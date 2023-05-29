@@ -144,6 +144,14 @@ void ShpFile::processRecords() {
             PointM point_m;
             point_m.read(file, outputFile);
             break;
+        case 23:
+            PolyLineM poli_line_m;
+            poli_line_m.read(file, outputFile);
+            break;
+        case 25:
+            PolygonM polygon_m;
+            polygon_m.read(file, outputFile);
+            break;
         case 28:
             MultiPointM multi_point_m;
             multi_point_m.read(file, outputFile);

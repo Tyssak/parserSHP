@@ -1,5 +1,10 @@
 #include "ShpFile.h"
 
+#include "MultiPointZ.h"
+#include "PointZ.h"
+#include "PolygonZ.h"
+#include "PolyLineZ.h"
+
 using namespace std;
 
 ofstream outputFile;
@@ -139,6 +144,22 @@ void ShpFile::processRecords() {
         case 8: 
             MultiPointShape multiPoint;
             multiPoint.read(file, outputFile);
+            break;
+        case 11:
+            PointZ point_z;
+            point_z.read(file, outputFile);
+            break;
+        case 13:
+            PolyLineZ polyline_z;
+            polyline_z.read(file, outputFile);
+            break;
+        case 15:
+            PolygonZ polygon_z;
+            polygon_z.read(file, outputFile);
+            break;
+        case 18:
+            MultiPointZ multi_point_z;
+            multi_point_z.read(file, outputFile);
             break;
         case 21:
             PointM point_m;
